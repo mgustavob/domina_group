@@ -4,13 +4,15 @@
 
 {% block content %}
 
-<h1>{{ username }}'s collection:</h1>
+<div class="welcome-text text-center">
+  <h1>
+Welcome {{ username }}!</h1>
+</div>
+<H3>Happy to have you here... let the learning... Begin!</H3>
+<hr />
 
-<!-- {% for cat in cats %}
-<a href="//{{ cat.id }}">
-  <h3>{{ cat.name }}</h3>
-</a> -->
-
-{% endfor %}
-
+<a href="/logout/"><button class="btn dento-btn">Logout</button></a>
+<a href="/logout/"><button class="btn dento-btn">Edit User</button></a>
+<a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
+<a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
 {% endblock %}

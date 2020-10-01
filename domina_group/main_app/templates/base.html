@@ -87,11 +87,11 @@
                     <ul class="dropdown">
                       <li><a href="/">- Home</a></li>
                       <li><a href="about.html">- About Us</a></li>
-                      <li><a href="signup.html/">- Sign Up</a></li>
-                      <li><a href="pricing.html">- Pricing</a></li>
+                      <li><a href="/signup/">- Sign Up</a></li>
+                      <li><a href="/login/">- Login</a></li>
                       <li><a href="blog.html">- Blog</a></li>
                       <li><a href="blog-details.html">- Blog Details</a></li>
-                      <li><a href="contact.html">- Contact</a></li>
+                      <li><a href="/contact/">- Contact</a></li>
                       <li><a href="#">- Dropdown</a>
                         <ul class="dropdown">
                           <li><a href="#">- Dropdown Item</a></li>
@@ -110,15 +110,17 @@
                     </ul>
                   </li>
                   <li><a href="about.html">About</a></li>
-                  <li><a href="service.html">Service</a></li>
-                  <li><a href="pricing.html">Pricing</a></li>
-                  <li><a href="#">Blog</a>
-                    <ul class="dropdown">
-                      <li><a href="blog.html">- Blog</a></li>
-                      <li><a href="blog-details.html">- Blog Details</a></li>
-                    </ul>
+                  <li><a href="/signup/">Sign Up</a></li>
+                  <li><a href="/login">Login</a></li>
+                  {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' user.username %}">Profile</a>
+                    <!-- <ul class="dropdown"> -->
+                      <!-- <li><a href="blog.html">- Blog</a></li>
+                      <li><a href="blog-details.html">- Blog Details</a></li> -->
+                    <!-- </ul> -->
+                  {% endif%}
                   </li>
-                  <li><a href="./contact.html">Contact</a></li>
+                  <li><a href="/contact/">Contact</a></li>
                 </ul>
               </div>
               <!-- Nav End -->

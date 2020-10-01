@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <a href="/subject/create">Add a New Subject!</a>
+    <hr />
+    {% for subject in subjects %}
+        <p>Name: {{ subject.name }}</p>
+        <p>Description: {{ subject.description }}</p>
+        <hr />
+        <a href="{% url 'assoc_sub' user.id subject.id %}"><button class="btn dento-btn">add to my subjects</button></a>
+        <a href="{% url 'subject_delete' %}"><button class="btn dento-btn">Delete subject</button></a>
+    {% endfor %}
+<br>
+<a href="/logout/"><button class="btn dento-btn">Logout</button></a>
+<a href="{% url 'profile' user.username %}"><button class="btn dento-btn">Back to Profile</button></a>
+<a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
+{% endblock %}

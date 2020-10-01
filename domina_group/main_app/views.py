@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Tutor, Student, Subject, Lesson
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -75,5 +75,51 @@ def signup_view(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
+    subjects = Subject.objects.filter(user=user)
     # lessons = Lesson.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username})
+    return render(request, 'profile.html', {'username': username, 'subjects':subjects})
+
+# def edit_profile(request, username):
+#     user = User.objects.get(username=username)
+#     if request.method =='POST':
+#         form = UserChangeForm(request.POST, instance=request.user)
+
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('/user/'+str(user))
+#     else:
+#         form = UserChangeForm(instance=request.user)
+#         args = {'form': form}
+#         return render(request, '/user/+str(user)/edit_profile.html')
+
+class SubjectCreate(CreateView):
+    model = Subject
+    fields = ['name', 'description']
+    success_url = '/'
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect('/user/'+str(self.request.user))
+
+def subject_index(request, username):
+    subjects = Subject.objects.all()
+    return render(request, 'subjects/index.html', {'subjects':subjects})
+
+@method_decorator(login_required, name='dispatch')
+class SubjectDelete(DeleteView):
+    model = Subject
+    obj = Subject.filter()
+    success_url = '/'
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect('/user/'+str(self.request.user))
+
+def subject_show(request, username):
+    subjects = Subject.objects.filter(user=username)
+    return render(request, 'subjects/show.html', {'subjects':subjects})
+
+def assoc_sub(request, username, subject_id):
+    Subject.objects.get(id=subject_id).user.add(username)
+    # return HttpResponseRedirect('/cats/'+str(cat_id)+'/')
+    return redirect('subject_show', username=username)
