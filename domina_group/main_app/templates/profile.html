@@ -12,7 +12,7 @@ Welcome {{ username }}!</h1>
 <hr />
 
 <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
-<a href="/logout/"><button class="btn dento-btn">Edit User</button></a>
+<a href="{% url 'edit_profile' user.username %}"><button class="btn dento-btn">Edit User</button></a>
 <a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
 <a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
 {% endblock %}

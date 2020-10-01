@@ -75,22 +75,22 @@ def signup_view(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    subjects = Subject.objects.filter(user=user)
+    # subjects = Subject.objects.filter(user=user)
     # lessons = Lesson.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'subjects':subjects})
+    return render(request, 'profile.html', {'username': username})
 
-# def edit_profile(request, username):
-#     user = User.objects.get(username=username)
-#     if request.method =='POST':
-#         form = UserChangeForm(request.POST, instance=request.user)
+def edit_profile(request, username):
+    user = User.objects.get(username=username)
+    if request.method =='POST':
+        form = UserChangeForm(request.POST, instance=request.user)
 
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect('/user/'+str(user))
-#     else:
-#         form = UserChangeForm(instance=request.user)
-#         args = {'form': form}
-#         return render(request, '/user/+str(user)/edit_profile.html')
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/user/'+str(user))
+    else:
+        form = UserChangeForm(instance=request.user)
+        args = {'form': form}
+        return render(request, '/user/+str(user)/edit_profile.html')
 
 class SubjectCreate(CreateView):
     model = Subject
@@ -108,7 +108,7 @@ def subject_index(request, username):
 @method_decorator(login_required, name='dispatch')
 class SubjectDelete(DeleteView):
     model = Subject
-    obj = Subject.filter()
+    # obj = Subject.objects.filter()
     success_url = '/'
     def form_valid(self, form):
         self.object = form.save(commit=False)
