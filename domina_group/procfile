@@ -1,0 +1,3 @@
+web: gunicorn domina_group.wsql
+release: python manage.py migrate
+
