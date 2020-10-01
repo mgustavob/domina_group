@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import psycopg2
 import dj_database_url
+import socket
 # from decouple import config
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -36,9 +37,9 @@ if DJANGO_HOST == "production":
 else:
     DEBUG = True
     STATIC_URL = '/static/'
-    STATICFILES_DIRS = [
-        BASE_DIR / "static",
-    ]
+    # STATICFILES_DIRS = [
+    #     BASE_DIR / "static",
+    # ]
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -119,7 +120,7 @@ DATABASES = {
 # https://dominagroup.herokuapp.com/
 
 #production
-DATABASES['default'] = dj_database_url.config(conn_max=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(con_max=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
