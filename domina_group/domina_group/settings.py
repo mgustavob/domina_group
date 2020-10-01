@@ -120,7 +120,7 @@ DATABASES = {
 # https://dominagroup.herokuapp.com/
 
 #production
-DATABASES['default'] = dj_database_url.config(con_max=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(conn_max=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
