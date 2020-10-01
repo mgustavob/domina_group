@@ -32,7 +32,7 @@ else:
 # Define general behavior variables for DJANGO_HOST and all others
 if DJANGO_HOST == "production":
     DEBUG = False
-    STATIC_URL = 'https://yourappname.herokuapp.com'
+    STATIC_URL = 'https://dominagroup.herokuapp.com'
 else:
     DEBUG = True
     STATIC_URL = '/static/'
@@ -54,7 +54,9 @@ SECRET_KEY = os.environ['SECRET_KEY'] or config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    'dominagroup.herokuapp.com'
+]
 
 
 # Application definition
@@ -112,6 +114,7 @@ DATABASES = {
         'NAME': 'tutor',
     }
 }
+# https://dominagroup.herokuapp.com/
 
 #production
 DATABASES['default'] = dj_database_url.config(conn_max=600, ssl_require=True)
