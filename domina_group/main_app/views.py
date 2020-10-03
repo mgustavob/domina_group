@@ -75,9 +75,11 @@ def signup_view(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
+    if user.is_staff==True:
+        print('🚀')
     # subjects = Subject.objects.filter(user=user)
     # lessons = Lesson.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username})
+    return render(request, 'profile.html', {'user': user})
 
 def edit_profile(request, username):
     user = User.objects.get(username=username)
@@ -90,7 +92,7 @@ def edit_profile(request, username):
     else:
         form = UserChangeForm(instance=request.user)
         args = {'form': form}
-        return render(request, '/user/+str(user)/edit_profile.html')
+        return render(request, 'edit_profile.html', {'username': username})
 
 class SubjectCreate(CreateView):
     model = Subject
@@ -109,11 +111,16 @@ def subject_index(request, username):
 class SubjectDelete(DeleteView):
     model = Subject
     # obj = Subject.objects.filter()
-    success_url = '/'
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.save()
-        return HttpResponseRedirect('/user/'+str(self.request.user))
+    def get_success_url(self):
+        self.object.user = self.request.user
+        user = self.object.user
+        return ('/user/'+str(user))
+    # # obj = Subject.objects.filter()
+    # success_url = '/'
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.save()
+    #     return HttpResponseRedirect('/user/'+str(self.request.user))
 
 def subject_show(request, username):
     subjects = Subject.objects.filter(user=username)

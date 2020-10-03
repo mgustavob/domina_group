@@ -17,8 +17,8 @@ import dj_database_url
 import socket
 # from decouple import config
 
-DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# DATABASE_URL = os.environ['DATABASE_URL']
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # If the host name starts with 'live', DJANGO_HOST = "production"
@@ -51,14 +51,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY ='fk4*rx_3e=hgvq36-!xr%cjpk$e$jg8cd0j)k1f522@aq^u&od'
+# os.environ['SECRET_KEY']
 # or config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'dominagroup.herokuapp.com'
+    # 'dominagroup.herokuapp.com'
 ]
 
 
@@ -120,7 +121,7 @@ DATABASES = {
 # https://dominagroup.herokuapp.com/
 
 #production
-DATABASES['default'] = dj_database_url.config(conn_max=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(conn_max=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

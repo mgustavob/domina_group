@@ -11,8 +11,14 @@ Welcome {{ username }}!</h1>
 <H3>Happy to have you here... let the learning... Begin!</H3>
 <hr />
 
-<a href="/logout/"><button class="btn dento-btn">Logout</button></a>
-<a href="{% url 'edit_profile' user.username %}"><button class="btn dento-btn">Edit User</button></a>
-<a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
-<a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
+{% if user.is_staff %}
+  <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
+  <a href="{% url 'edit_profile' user.username %}"><button class="btn dento-btn">Edit User</button></a>
+  <a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
+  <a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
+{% else %}
+  <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
+  <a href="{% url 'edit_profile' user.username %}"><button class="btn dento-btn">Edit User</button></a>
+  <a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
+{% endif %}
 {% endblock %}

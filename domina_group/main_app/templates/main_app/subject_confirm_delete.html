@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="welcome-text text-center">
+  <h1>
+What Subject will you like to delete {{ username }}?</h1>
+</div>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <table>
+  {{ form.as_table }}
+  </table>
+  <input type="submit" class="btn dento-btn" value="Yes, Delete!">
+</form>
+<br>
+
+<a href="/logout/"><button class="btn dento-btn">Logout</button></a>
+<a href="/logout/"><button class="btn dento-btn">Edit User</button></a>
+<a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">add Subject</button></a>
+{% endblock %}

@@ -14,6 +14,6 @@ urlpatterns = [
     path('user/<username>/subject/index/', views.subject_index, name='subject_index'),
     path('user/<username>/subject/assoc_sub/<subject_id>', views.assoc_sub, name='assoc_sub'),
     path('user/<username>/subject/show/', views.subject_show, name='subject_show'),
-    path('user/<username>/subject/<int:id>/delete/', views.SubjectDelete.as_view(), name='subject_delete'),
+    path('subject/<int:pk>/delete/', views.SubjectDelete.as_view(), name='subject_delete'),
 
 ]

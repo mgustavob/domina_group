@@ -3,6 +3,7 @@
 {% block content %}
     <a href="/subject/create">Add a New Subject!</a>
     <hr />
+{% if subjects %}
     {% for subject in subjects %}
         <p>Name: {{ subject.name }}</p>
         <p>Description: {{ subject.description }}</p>
@@ -10,6 +11,9 @@
         <a href="{% url 'assoc_sub' user.id subject.id %}"><button class="btn dento-btn">add to my subjects</button></a>
         <a href="{% url 'subject_delete' %}"><button class="btn dento-btn">Delete subject</button></a>
     {% endfor %}
+{% else %}
+    <h3>No subjects selected yet</h3>
+{% endif %}
 <br>
 <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
 <a href="{% url 'profile' user.username %}"><button class="btn dento-btn">Back to Profile</button></a>
