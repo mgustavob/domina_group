@@ -9,7 +9,7 @@
 What Subject will you like to delete {{ username }}?</h1>
 </div>
 
-<form action="" method="post">
+<form action="" method="POST">
   {% csrf_token %}
   <table>
   {{ form.as_table }}

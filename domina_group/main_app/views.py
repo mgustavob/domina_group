@@ -130,3 +130,8 @@ def assoc_sub(request, username, subject_id):
     Subject.objects.get(id=subject_id).user.add(username)
     # return HttpResponseRedirect('/cats/'+str(cat_id)+'/')
     return redirect('subject_show', username=username)
+
+def un_assoc_sub(request, username, subject_id):
+    Subject.objects.get(id=subject_id).user.remove(username)
+    # return HttpResponseRedirect('/cats/'+str(cat_id)+'/')
+    return redirect('subject_show', username=username)

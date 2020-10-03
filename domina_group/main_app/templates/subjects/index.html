@@ -9,7 +9,6 @@
         <p>Description: {{ subject.description }}</p>
         <hr />
         <a href="{% url 'assoc_sub' user.id subject.id %}"><button class="btn dento-btn">add to my subjects</button></a>
-        <a href="{% url 'subject_delete' %}"><button class="btn dento-btn">Delete subject</button></a>
     {% endfor %}
 {% else %}
     <h3>No subjects selected yet</h3>

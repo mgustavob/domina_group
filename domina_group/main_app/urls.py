@@ -13,7 +13,7 @@ urlpatterns = [
     path('user/<username>/subject/create/', views.SubjectCreate.as_view(), name='subject_create'),
     path('user/<username>/subject/index/', views.subject_index, name='subject_index'),
     path('user/<username>/subject/assoc_sub/<subject_id>', views.assoc_sub, name='assoc_sub'),
+    path('user/<username>/subject/un_assoc_sub/<subject_id>', views.un_assoc_sub, name='un_assoc_sub'),
     path('user/<username>/subject/show/', views.subject_show, name='subject_show'),
-    path('subject/<int:pk>/delete/', views.SubjectDelete.as_view(), name='subject_delete'),
-
+    path('user/<username>/subject/<int:pk>/delete/', views.SubjectDelete.as_view(), name='subject_delete'),
 ]
