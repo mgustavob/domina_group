@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<form method="POST" action="" class="" >
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>q
+    <button type="submit" class="btn dento-btn" >Save</button>
 </form>
 
 {% endblock %}

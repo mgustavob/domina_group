@@ -4,22 +4,31 @@
 
 {% block content %}
 
-<div class="welcome-text text-center">
-  <h1>
-Welcome {{ username }}!</h1>
-</div>
-<H3>Happy to have you here... let the learning... Begin!</H3>
-<hr />
 
 {% if user.is_staff %}
+  <div class="welcome-text text-center">
+  <h1>
+  Welcome {{ user.username }}, you are sign as a Tutor!</h1>
+  </div>
+  <H3>Please add the subjets you master to your list, if you dont see the subject on the list please create one, Thanks!</H3>
+  <hr />
+
   <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
   <a href="{% url 'edit_profile' user.username %}"><button class="btn dento-btn">Edit User</button></a>
   <a href="{% url 'subject_show' user.id %}"><button class="btn dento-btn">Show my Subjects</button></a>
   <a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
   <a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
 {% else %}
+<div class="welcome-text text-center">
+  <h1>
+  Welcome {{ user.username }}, you are sign as a Student!</h1>
+  </div>
+  <H3>Please add the subjets you are interested on to your list, so that you can find a Tutor, Thanks!</H3>
+  <hr />
+
   <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
   <a href="{% url 'edit_profile' user.username %}"><button class="btn dento-btn">Edit User</button></a>
+  <a href="{% url 'subject_show' user.id %}"><button class="btn dento-btn">Show my Subjects</button></a>
   <a href="{% url 'subject_index' user.username %}"><button class="btn dento-btn">Subject Index</button></a>
 {% endif %}
 {% endblock %}

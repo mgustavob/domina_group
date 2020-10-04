@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if user.is_staff %}
+<h2>{{ user.username }} these are the Subjects you Teach:</h2>
     <hr />
     {% for subject in subjects %}
         <p>Name: {{ subject.name }}</p>
@@ -11,4 +13,18 @@
 <a href="/logout/"><button class="btn dento-btn">Logout</button></a>
 <a href="{% url 'profile' user.username %}"><button class="btn dento-btn">Back to Profile</button></a>
 <a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
+{% else %}
+<h2>{{ user.username }} these are the Subjects you are Interested on:</h2>
+    <hr />
+    {% for subject in subjects %}
+        <p>Name: {{ subject.name }}</p>
+        <p>Description: {{ subject.description }}</p>
+        <a href="{% url 'un_assoc_sub' user.id subject.id %}"><button class="btn dento-btn">Remove from my subjects</button></a>
+        <a href="{% url 'subject_tutor' user.id subject.id %}"><button class="btn dento-btn">Find Instructors for this Subject</button></a>
+        <hr />
+    {% endfor %}
+<a href="/logout/"><button class="btn dento-btn">Logout</button></a>
+<a href="{% url 'profile' user.username %}"><button class="btn dento-btn">Back to Profile</button></a>
+<a href="{% url 'subject_create' user.username %}"><button class="btn dento-btn">Create Subject</button></a>
+{% endif %}
 {% endblock %}

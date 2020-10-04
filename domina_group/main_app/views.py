@@ -9,10 +9,14 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .forms import profileForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')
 
 def contact(request):
     if request.method == "POST":
@@ -88,11 +92,14 @@ def edit_profile(request, username):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/user/'+str(user))
+            # return redirect('/user/'+str(username), user.pk)
+            return HttpResponseRedirect('/user/'+str(username), user.pk)
+        else:
+            form = UserChangeForm(request.POST)
     else:
-        form = UserChangeForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'edit_profile.html', {'username': username})
+        form = profileForm(instance=request.user)
+    args = {'form': form}
+    return render(request, 'edit_profile.html', {'username': username, 'form':form})
 
 class SubjectCreate(CreateView):
     model = Subject
@@ -110,11 +117,8 @@ def subject_index(request, username):
 @method_decorator(login_required, name='dispatch')
 class SubjectDelete(DeleteView):
     model = Subject
-    # obj = Subject.objects.filter()
     def get_success_url(self):
-        self.object.user = self.request.user
-        user = self.object.user
-        return ('/user/'+str(user))
+        return ('/user/'+str(self.request.user))
     # # obj = Subject.objects.filter()
     # success_url = '/'
     # def form_valid(self, form):
@@ -135,3 +139,7 @@ def un_assoc_sub(request, username, subject_id):
     Subject.objects.get(id=subject_id).user.remove(username)
     # return HttpResponseRedirect('/cats/'+str(cat_id)+'/')
     return redirect('subject_show', username=username)
+
+def subject_tutor(request, user_id, subject_id):
+    subjects = Subjects.objects.get(id=subject_id, user=True)
+    return redirect('subject_tutor', {'subjects': subjects})

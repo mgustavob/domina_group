@@ -8,7 +8,8 @@
         <p>Name: {{ subject.name }}</p>
         <p>Description: {{ subject.description }}</p>
         <hr />
-        <a href="{% url 'assoc_sub' user.id subject.id %}"><button class="btn dento-btn">add to my subjects</button></a>
+        <a href="{% url 'assoc_sub' user.id subject.id %}"><button class="btn dento-btn" >add to my subjects</button></a>
+        <a href="{% url 'subject_delete' user.id subject.id %}"><button class="btn dento-btn mx-2 active" data-animation="fadeInDown" data-delay="700ms">Delete the Subject</button></a>
     {% endfor %}
 {% else %}
     <h3>No subjects selected yet</h3>

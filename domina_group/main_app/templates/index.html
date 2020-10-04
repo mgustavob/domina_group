@@ -8,18 +8,17 @@
     <!-- Welcome Slides -->
     <div class="welcome-slides owl-carousel">
       <!-- Single Welcome Slide -->
-      <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url({% static 'main_app/img/bg-img/1.jpg' %});">
+      <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url({% static 'main_app/img/bg-img/1a.jpeg' %});">
         <div class="container h-100">
           <div class="row h-100 align-items-center">
             <div class="col-12">
               <!-- Welcome Text -->
               <div class="welcome-text text-center">
-                <h2 data-animation="fadeInUp" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Dental Care</h2>
-                <p data-animation="fadeInUp" data-delay="300ms">As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                  offer you.</p>
+                <h2 data-animation="fadeInUp" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great personal Tutoring</h2>
+                <p data-animation="fadeInUp" data-delay="300ms">We focus on developing creative and critical thinking for our students, so that they can resolve different kinds of challenges.</p>
                 <div class="welcome-btn-group">
-                  <a href="#" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Get Started</a>
-                  <a href="#" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Contact Us</a>
+                  <a href="{% url 'signup' %}" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Sign UP</a>
+                  <a href="{% url 'login' %}" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Log In</a>
                 </div>
               </div>
             </div>
@@ -28,18 +27,17 @@
       </div>
 
       <!-- Single Welcome Slide -->
-      <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url(/static/main_app/img/bg-img/2.jpg);">
+      <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url(/static/main_app/img/bg-img/2a.jpg);">
         <div class="container h-100">
           <div class="row h-100 align-items-center">
             <div class="col-12">
               <!-- Welcome Text -->
               <div class="welcome-text text-center">
-                <h2 data-animation="fadeInDown" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Dental Care</h2>
-                <p data-animation="fadeInDown" data-delay="300ms">As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                  offer you.</p>
+                <h2 data-animation="fadeInDown" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great personal Tutoring</h2>
+                <p data-animation="fadeInDown" data-delay="300ms">We focus on developing creative and critical thinking for our students, so that they can resolve different kinds of challenges.</p>
                 <div class="welcome-btn-group">
-                  <a href="#" class="btn dento-btn mx-2" data-animation="fadeInDown" data-delay="500ms">Get Started</a>
-                  <a href="#" class="btn dento-btn mx-2 active" data-animation="fadeInDown" data-delay="700ms">Contact Us</a>
+                  <a href="{% url 'signup' %}" class="btn dento-btn mx-2" data-animation="fadeInDown" data-delay="500ms">Sign Up</a>
+                  <a href="{% url 'login' %}" class="btn dento-btn mx-2 active" data-animation="fadeInDown" data-delay="700ms">Log In</a>
                 </div>
               </div>
             </div>
@@ -57,7 +55,7 @@
         <!-- About Us Thumbnail -->
         <div class="col-12 col-md-6">
           <div class="about-us-thumbnail mb-50">
-            <img src="/static/main_app/img/bg-img/15.jpg" alt="">
+            <img src="/static/main_app/img/bg-img/15a.jpg" alt="">
           </div>
         </div>
         <!-- About Content -->
@@ -68,24 +66,25 @@
               <h2>About Us</h2>
               <div class="line"></div>
             </div>
-            <p>Vestibulum condimentum, risus sedones honcus rutrum, salah lacus mollis zurna, nec finibusmi velit advertisis. Proin vitae odin quis magna aliquet laciniae. Etiam auctor, nisi vel. Pellentesque ultrices nisl quam iaculis, nec pulvinar
-              augue.</p>
+            <p>
+              We are a group of profesors / tutors with over 40 years of experince teaching students from a wide range of schools and univercities.
+            </p>
 
             <!-- Single Skills Area -->
             <div class="single-skills-area mt-30">
-              <h6>Experience Dentist</h6>
+              <h6>Experience Tutoring</h6>
               <div id="bar1" class="barfiller">
                 <span class="tip"></span>
-                <span class="fill" data-percentage="80"></span>
+                <span class="fill" data-percentage="100"></span>
               </div>
             </div>
 
             <!-- Single Skills Area -->
             <div class="single-skills-area mt-30">
-              <h6>Modern Equipment</h6>
+              <h6>Modern Methods</h6>
               <div id="bar2" class="barfiller">
                 <span class="tip"></span>
-                <span class="fill" data-percentage="65"></span>
+                <span class="fill" data-percentage="100"></span>
               </div>
             </div>
 
@@ -94,7 +93,7 @@
               <h6>Friendly Staff</h6>
               <div id="bar3" class="barfiller">
                 <span class="tip"></span>
-                <span class="fill" data-percentage="85"></span>
+                <span class="fill" data-percentage="100"></span>
               </div>
             </div>
           </div>
@@ -116,7 +115,7 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="single-cta text-center mt-50 mb-100">
             <i class="icon_genius"></i>
-            <h2><span class="counter">20</span></h2>
+            <h2><span class="counter">40</span></h2>
             <h5>Years Of Experience</h5>
           </div>
         </div>
@@ -143,8 +142,8 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="single-cta text-center mt-50 mb-100">
             <i class="icon_id"></i>
-            <h2><span class="counter">40</span>+</h2>
-            <h5>Dentist</h5>
+            <h2><span class="counter">10</span>+</h2>
+            <h5>Instructors</h5>
           </div>
         </div>
       </div>
@@ -254,41 +253,41 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">Teeth Whitening Service at home</th>
+                  <th scope="row">One hour personal Tutor</th>
                   <td>1 times</td>
-                  <td>$115.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Teeth Whitening Service at Dental Clinic</th>
-                  <td>1 times</td>
-                  <td>$100.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Ceramic crowns and fillings Dental porcelain</th>
-                  <td>1 times</td>
-                  <td>$99.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Remove crowns, bridges Service</th>
-                  <td>1 tooth</td>
                   <td>$50.00</td>
                 </tr>
                 <tr>
-                  <th scope="row">Covering the recession of the gums</th>
+                  <th scope="row">One hour and half personal Tutor</th>
                   <td>1 times</td>
-                  <td>$400.00</td>
+                  <td>$70.00</td>
                 </tr>
                 <tr>
-                  <th scope="row">Consultation, impressions and preparation of models</th>
+                  <th scope="row">Two hours personal Tutor</th>
                   <td>1 times</td>
-                  <td>$35.00</td>
+                  <td>$80.00</td>
                 </tr>
                 <tr>
-                  <th scope="row">Removal of an old inlay, old crown</th>
-                  <td>1 times</td>
-                  <td>$99.00</td>
+                  <th scope="row">Five peronal clases One hour and half hours each</th>
+                  <td>5 times</td>
+                  <td>$275.00</td>
                 </tr>
                 <tr>
+                  <th scope="row">Ten peronal clases One hour and half hours each</th>
+                  <td>10 times</td>
+                  <td>$530.00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Twenty peronal clases One hour and half hours each</th>
+                  <td>20 times</td>
+                  <td>$1020.00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Up to five studens One and half hours</th>
+                  <td>1 times</td>
+                  <td>$125.00</td>
+                </tr>
+                <!-- <tr>
                   <th scope="row">Overlay teeth whitening ( 2 arches)</th>
                   <td>1 times</td>
                   <td>$170.00</td>
@@ -302,7 +301,7 @@
                   <th scope="row">Implantation of an implant (price depends on system used)</th>
                   <td>1 tooth</td>
                   <td>$600.00</td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
