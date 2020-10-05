@@ -20,7 +20,7 @@
         <p>Name: {{ subject.name }}</p>
         <p>Description: {{ subject.description }}</p>
         <a href="{% url 'un_assoc_sub' user.id subject.id %}"><button class="btn dento-btn">Remove from my subjects</button></a>
-        <a href="{% url 'subject_tutor' user.id subject.id %}"><button class="btn dento-btn">Find Instructors for this Subject</button></a>
+        <a href="{% url 'subject_detail' user.id subject.id %}"><button class="btn dento-btn">Find Instructors for this Subject</button></a>
         <hr />
     {% endfor %}
 <a href="/logout/"><button class="btn dento-btn">Logout</button></a>

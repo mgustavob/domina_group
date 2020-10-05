@@ -2,18 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Tutor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+
+class UserEdit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.user.username
-
-class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-
-    def __str__(self):
-        return self.user.username
-
+        return self.user
 
 
 class Subject(models.Model):
@@ -26,10 +21,9 @@ class Subject(models.Model):
 
 
 class Lesson(models.Model):
-    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-    student = models.ManyToManyField(Student)
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE)
+    student = models.CharField(max_length=50)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    rate = models.CharField(max_length=50)
     date = models.DateField(auto_now_add=False, blank=True)
     time = models.TimeField(auto_now_add=False, blank=True)
 

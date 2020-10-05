@@ -3,12 +3,12 @@
 {% load static %}
 
 {% block content %}
-<h2>This is the list of Tutors for {{ subject.name }}</h2>
+<h2>This is the list of Tutors for </h2>
 {% for subject in subjects %}
-  <p>Name: {{ subject.user }}</p>
+  <p>Name: {{ subject.name }}</p>
+  <p>Tutor: {{ subject.user.name }}</p>
   <hr />
-  <a href="{% url 'assoc_sub' user.id subject.id %}"><button class="btn dento-btn" >add to my subjects</button></a>
-  <a href="{% url 'subject_delete' user.id subject.id %}"><button class="btn dento-btn mx-2 active" data-animation="fadeInDown" data-delay="700ms">Delete the Subject</button></a>
+
 {% endfor %}
 
 <a href="/logout/"><button class="btn dento-btn">Logout</button></a>

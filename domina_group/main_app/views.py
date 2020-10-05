@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Tutor, Student, Subject, Lesson
+from .models import Subject, Lesson, UserEdit
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
@@ -44,7 +44,7 @@ def login_view(request):
         if form.is_valid():
             u = form.cleaned_data['username']
             p = form.cleaned_data['password']
-            user = authenticate(username = u, password = p, isStudent = True)
+            user = authenticate(username = u, password = p)
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -75,8 +75,8 @@ def signup_view(request):
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
 
-@login_required
 
+@login_required
 def profile(request, username):
     user = User.objects.get(username=username)
     if user.is_staff==True:
@@ -85,12 +85,15 @@ def profile(request, username):
     # lessons = Lesson.objects.filter(user=user)
     return render(request, 'profile.html', {'user': user})
 
+@login_required
 def edit_profile(request, username):
     user = User.objects.get(username=username)
     if request.method =='POST':
-        form = UserChangeForm(request.POST, instance=request.user)
+        # form = UserChangeForm(request.POST, instance=request.user)
+        form = profileForm(instance=request.user)
 
         if form.is_valid():
+            print('🚧')
             form.save()
             # return redirect('/user/'+str(username), user.pk)
             return HttpResponseRedirect('/user/'+str(username), user.pk)
@@ -98,8 +101,8 @@ def edit_profile(request, username):
             form = UserChangeForm(request.POST)
     else:
         form = profileForm(instance=request.user)
-    args = {'form': form}
-    return render(request, 'edit_profile.html', {'username': username, 'form':form})
+
+#     return render(request, 'edit_profile.html', {'username': username, 'form':form})
 
 class SubjectCreate(CreateView):
     model = Subject
@@ -140,6 +143,17 @@ def un_assoc_sub(request, username, subject_id):
     # return HttpResponseRedirect('/cats/'+str(cat_id)+'/')
     return redirect('subject_show', username=username)
 
-def subject_tutor(request, user_id, subject_id):
-    subjects = Subjects.objects.get(id=subject_id, user=True)
-    return redirect('subject_tutor', {'subjects': subjects})
+def subject_detail(request, user_id, subject_id):
+    # subject_id = self.object.subject.id
+    print(Subject.objects.all())
+    subjects = Subject.objects.all()
+    return render(request, 'subject_detail.html', {'subjects': subjects})
+
+class UserUpdate(UpdateView):
+    model = User
+    fields = ['username', 'email']
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object = form.save()
+        return HttpResponseRedirect('/user/'+str(self.object.user))
